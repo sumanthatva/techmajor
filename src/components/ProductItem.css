@@ -1,0 +1,17 @@
+.product-item {
+  background-color: lightgray;
+}
+
+.product-item__name {
+
+}
+
+.product-item__price {
+  font-weight: bold;
+}
+
+.product-item__image {
+  height: 300px;
+  width: 300px;
+}
+

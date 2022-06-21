@@ -1,11 +1,13 @@
 import React from 'react';
+import './ProductItem.css';
 
 class ProductItem extends React.Component {
   render() {
     return (
-      <div>
-        <p> Product Item 1 </p>
-        <p> ₹250 </p>
+      <div className='product-item'>
+        <img src='images/shoes1.jpeg' alt='shoe' className='product-item__image' />
+        <p className='product-item__name'> Mens Running Shoes </p>
+        <p className='product-item__price'> ₹250 </p>
       </div>
     );
   }

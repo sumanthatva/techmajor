@@ -19,11 +19,20 @@ class ProductItem extends React.Component {
 
   render() {
     console.log("ProductItem::render called");
+
+    const prodName = "Mens Running Shoes";
+    const prodPrice = "₹250";
+    const imagePath = "images/shoes1.jpeg";
+
+    // React element as a variable!
+    // Refer: https://reactjs.org/docs/introducing-jsx.html
+    const imageElem = <img src={imagePath} alt='shoe' className='product-item__image' />
+
     return (
       <div className='product-item'>
-        <img src='images/shoes1.jpeg' alt='shoe' className='product-item__image' />
-        <p className='product-item__name'> Mens Running Shoes </p>
-        <p className='product-item__price'> ₹250 </p>
+        {imageElem}
+        <p className='product-item__name'> {prodName} </p>
+        <p className='product-item__price'> {prodPrice} </p>
       </div>
     );
   }

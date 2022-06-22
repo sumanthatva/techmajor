@@ -20,9 +20,10 @@ class ProductItem extends React.Component {
   render() {
     console.log("ProductItem::render called");
 
-    const prodName = "Mens Running Shoes";
-    const prodPrice = "₹250";
-    const imagePath = "images/shoes1.jpeg";
+    // Read the values from props.
+    const prodName = this.props.prodName;
+    const prodPrice = this.props.prodPrice;
+    const imagePath = this.props.imagePath;
 
     // React element as a variable!
     // Refer: https://reactjs.org/docs/introducing-jsx.html

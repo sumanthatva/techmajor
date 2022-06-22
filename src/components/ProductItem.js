@@ -39,4 +39,10 @@ class ProductItem extends React.Component {
   }
 }
 
+ProductItem.defaultProps = {
+  prodName: "Shoes",
+  prodPrice: "₹500",
+  imagePath: "images/shoes1.jpeg"
+}
+
 export default ProductItem;

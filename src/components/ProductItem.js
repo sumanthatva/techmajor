@@ -30,7 +30,7 @@ class ProductItem extends React.Component {
     const imageElem = <img src={imagePath} alt='shoe' className='product-item__image' />
 
     return (
-      <div className='product-item'>
+      <div className='product-item flx-inner'>
         {imageElem}
         <p className='product-item__name'> {prodName} </p>
         <p className='product-item__price'> {prodPrice} </p>

@@ -1,5 +1,11 @@
 .product-item {
   background-color: lightgray;
+
+  /* Flex properties */
+  min-width: 15% !important;
+  max-width: 20% !important;
+  padding: 5px;
+  margin: 5px;
 }
 
 .product-item__name {
@@ -15,4 +21,3 @@
   height: 300px;
   width: 300px;
 }
-

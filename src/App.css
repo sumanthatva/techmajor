@@ -36,10 +36,3 @@
     transform: rotate(360deg);
   }
 }
-
-.flx-outer {
-  display:flex;
-  background-color: bisque;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-}

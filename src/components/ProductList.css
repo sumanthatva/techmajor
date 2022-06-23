@@ -1,0 +1,6 @@
+.flx-outer {
+  display:flex;
+  background-color: bisque;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}

@@ -1,5 +1,7 @@
 import React from 'react';
 import './ProductItem.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+  import { faThumbsUp } from '@fortawesome/free-solid-svg-icons'
 
 class ProductItem extends React.Component {
 
@@ -7,6 +9,8 @@ class ProductItem extends React.Component {
   constructor(props) {
     super(props);
     console.log("ProductItem::Constructor called");
+
+    this.state = {isFav: false};
   }
 
   componentDidMount() {
@@ -15,6 +19,12 @@ class ProductItem extends React.Component {
 
   componentDidUpdate() {
     console.log("ProductItem::componentDidUpdate called");
+  }
+
+  toggleFav = () => {
+    let isFav = this.state.isFav;
+    this.setState({isFav: !isFav});
+    console.log("State toggled");
   }
 
   render() {
@@ -34,6 +44,11 @@ class ProductItem extends React.Component {
         {imageElem}
         <p className='product-item__name'> {prodName} </p>
         <p className='product-item__price'> {prodPrice} </p>
+        <div>
+          <button onClick={this.toggleFav}> {this.state.isFav? "Remove Favorite": "Add Favorite" } </button>
+        </div>
+        
+        {this.state.isFav? (<FontAwesomeIcon icon={faThumbsUp} />): null }
       </div>
     );
   }

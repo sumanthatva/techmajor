@@ -1,4 +1,5 @@
 import './App.css';
+import FuncProductItem from './components/FuncProductItem';
 import ProductList from './components/ProductList';
 
 function App() {
@@ -9,7 +10,10 @@ function App() {
   return (
     <div className="App">
       <h2> Let's start, Tech Major! </h2>
-      <ProductList products={products}/>
+      {/* <ProductList products={products}/> */}
+      <div>
+        <FuncProductItem prodName={"Women's running shoes"} prodPrice={"₹250"} imagePath={"images/shoes1.jpeg"} />
+      </div>
     </div>
   );
 }

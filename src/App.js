@@ -10,10 +10,10 @@ function App() {
   return (
     <div className="App">
       <h2> Let's start, Tech Major! </h2>
-      {/* <ProductList products={products}/> */}
-      <div>
+      <ProductList products={products}/>
+      {/* <div>
         <FuncProductItem prodName={"Women's running shoes"} prodPrice={"₹250"} imagePath={"images/shoes1.jpeg"} />
-      </div>
+      </div> */}
     </div>
   );
 }

@@ -9,7 +9,7 @@ class ProductList extends React.Component {
       <div className='container'>
         <div className='row'>
         {this.props.products.map(prod => (
-          <ProductItem prodName={prod.prodName} prodPrice={prod.prodPrice} imagePath={prod.imagePath}/>
+          <ProductItem prodName={prod.prodName} prodPrice={prod.prodPrice} imagePath={prod.imagePath} productId={prod.productId}/>
         ))}
         </div>
       </div>

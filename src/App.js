@@ -10,10 +10,9 @@ import { useState } from 'react';
 import Checkout from './components/pages/checkout';
 
 function App() {
-  const products = [{prodName: "Men's running shoes", prodPrice: "₹250", imagePath: "images/shoes1.jpeg"},
-                    {prodName: "Men's trainers", prodPrice: "₹1250", imagePath: "images/shoes2.jpeg"},
-                    {prodName: "Trendy shoes", imagePath: "images/shoes3.jpeg"},
-                    {}];
+  const products = [{prodName: "Men's running shoes", prodPrice: "₹250", imagePath: "images/shoes1.jpeg", productId: "1"},
+                    {prodName: "Men's trainers", prodPrice: "₹1250", imagePath: "images/shoes2.jpeg", productId: "2"},
+                    {prodName: "Trendy shoes", prodPrice: "₹2250", imagePath: "images/shoes3.jpeg", productId: "3"}];
   const [isUserLoggedIn] = useState(false);
 
   return (
@@ -48,7 +47,7 @@ function App() {
       {/* Conditional routing */}
       <Route 
             path="/checkout" 
-            element={isUserLoggedIn? <Checkout/> : <Navigate to="/products/abcd"/> } />
+            element={isUserLoggedIn? <Checkout/> : <Navigate to="/products/abcd" replace /> } />
     </Routes>
   </BrowserRouter>
 

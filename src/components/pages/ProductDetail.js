@@ -5,7 +5,7 @@ export default function ProductDetail() {
   const params = useParams();
   console.log(params.productId);
   return (
-    <div>
+    <div className='container'>
       <h2>Product Detail Page</h2>
       <p>{params.productId}</p>
     </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import './ProductItem.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
   import { faThumbsUp } from '@fortawesome/free-solid-svg-icons'
+import { Navigate } from 'react-router-dom';
 
 class ProductItem extends React.Component {
 
@@ -10,7 +11,7 @@ class ProductItem extends React.Component {
     super(props);
     console.log("ProductItem::Constructor called");
 
-    this.state = {isFav: false};
+    this.state = {isFav: false, isNavigate: false};
   }
 
   componentDidMount() {
@@ -21,14 +22,22 @@ class ProductItem extends React.Component {
     console.log("ProductItem::componentDidUpdate called");
   }
 
-  toggleFav = () => {
+  toggleFav = (e) => {
+    // Prevent propagating the event.
+    // The elements encapsulating the button that was clicked will NOT get the click event.
+    e.stopPropagation();
     let isFav = this.state.isFav;
     this.setState({isFav: !isFav});
     console.log("State toggled");
   }
 
+  divClickHandler = () => {
+    console.log("div clicked");
+    this.setState({isNavigate: true});
+  }
+
   render() {
-    console.log("ProductItem::render called");
+    console.log("ProductItem::render called: " + this.props.productId);
 
     // Read the values from props.
     const prodName = this.props.prodName;
@@ -40,7 +49,11 @@ class ProductItem extends React.Component {
     const imageElem = <img src={imagePath} alt='shoe' className='product-item__image' />
 
     return (
-      <div className='product-item col-md-4'>
+      this.state.isNavigate? <Navigate to={"/products/" + this.props.productId}/> :
+      
+      <div className='product-item col-md-4' 
+            key={this.props.productId}
+            onClick={this.divClickHandler}>
         {imageElem}
         <p className='product-item__name'> {prodName} </p>
         <p className='product-item__price'> {prodPrice} </p>
@@ -57,7 +70,8 @@ class ProductItem extends React.Component {
 ProductItem.defaultProps = {
   prodName: "Shoes",
   prodPrice: "₹500",
-  imagePath: "images/shoes1.jpeg"
+  imagePath: "images/shoes1.jpeg",
+  productId: ""
 }
 
 export default ProductItem;

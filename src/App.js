@@ -1,15 +1,24 @@
 import { Link } from 'react-router-dom';
 import './App.css';
-import FuncProductItem from './components/FuncProductItem';
-import ProductList from './components/ProductList';
+
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import Electronics from './components/pages/Electronics';
+import Books from './components/pages/Books';
+import ProductDetail from './components/pages/ProductDetail';
+import Home from './components/pages/Home';
+import { useState } from 'react';
+import Checkout from './components/pages/checkout';
 
 function App() {
   const products = [{prodName: "Men's running shoes", prodPrice: "₹250", imagePath: "images/shoes1.jpeg"},
                     {prodName: "Men's trainers", prodPrice: "₹1250", imagePath: "images/shoes2.jpeg"},
                     {prodName: "Trendy shoes", imagePath: "images/shoes3.jpeg"},
                     {}];
+  const [isUserLoggedIn] = useState(false);
+
   return (
-    <div className="App">
+    <BrowserRouter>
+       <div className="App">
       <h2> Let's start, Tech Major! </h2>
       <nav
         style={{
@@ -21,14 +30,29 @@ function App() {
         <Link to="/books">Books</Link> | {" "}
         {/* Phones redirects to electronics */}
         <Link to="/phones">Phones</Link> | {" "} 
-        <Link to="/products/1234">Product 1234</Link>
+        <Link to="/products/1234">Product 1234</Link> | {" "}
+        <Link to="/checkout">Checkout</Link>
 
       </nav>
-      <ProductList products={products}/>
-      {/* <div>
-        <FuncProductItem prodName={"Women's running shoes"} prodPrice={"₹250"} imagePath={"images/shoes1.jpeg"} />
-      </div> */}
+      
     </div>
+    <Routes>
+      <Route path="/" element={<Home products={products}/>}/>
+      <Route path="/products" element={<Home products={products}/>}/>
+      <Route path="/electronics" element={<Electronics/>}/>
+      <Route path="/books" element={<Books/>} />
+      <Route path="/products/:productId" element={<ProductDetail/>}/>
+      {/* Redirect */}
+      <Route path="/phones" element={<Navigate to="/electronics"/>} />
+
+      {/* Conditional routing */}
+      <Route 
+            path="/checkout" 
+            element={isUserLoggedIn? <Checkout/> : <Navigate to="/products/abcd"/> } />
+    </Routes>
+  </BrowserRouter>
+
+   
   );
 }
 

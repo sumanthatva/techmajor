@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Electronics from './components/pages/Electronics';
 import Books from './components/pages/Books';
 import ProductDetail from './components/pages/ProductDetail';
@@ -19,6 +19,8 @@ root.render(
       <Route path="electronics" element={<Electronics/>}/>
       <Route path="books" element={<Books/>} />
       <Route path="/products/:productId" element={<ProductDetail/>}/>
+      {/* Redirect */}
+      <Route path="/phones" element={<Navigate to="/electronics"/>} />
     </Routes>
   </BrowserRouter>
 );

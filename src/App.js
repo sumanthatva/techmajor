@@ -19,8 +19,10 @@ function App() {
       >
         <Link to="/electronics">Electronics</Link> |{" "}
         <Link to="/books">Books</Link> | {" "}
-
+        {/* Phones redirects to electronics */}
+        <Link to="/phones">Phones</Link> | {" "} 
         <Link to="/products/1234">Product 1234</Link>
+
       </nav>
       <ProductList products={products}/>
       {/* <div>

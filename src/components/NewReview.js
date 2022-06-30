@@ -28,6 +28,8 @@ export default function NewReview() {
     console.log("NewReview::Submit clicked");
     console.log("Rating: " + newReviewObj.rating);
     console.log("Review: " + newReviewObj.review);
+
+    setNewReviewObj({rating: "", review: ""});
   }
 
   return (
@@ -35,11 +37,13 @@ export default function NewReview() {
       <div>
         <label>Rating</label>
         <input type="number" min="1.0" step="0.1" max="5.0" 
+              value={newReviewObj.rating}
               onChange={(event) => ratingsChangeHandler(event)}/>
       </div>
       <div>
         <label>Review</label>
         <input type="text" 
+              value={newReviewObj.review}
               onChange={(event) => reviewChangeHandler(event)}/>
       </div>
       <div>

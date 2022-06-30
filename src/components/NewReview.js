@@ -1,24 +1,33 @@
 import { useState } from "react";
 
 export default function NewReview() {
-  const [rating, setRating] = useState('1.0');
-  const [review, setReview] = useState("");
+  // const [rating, setRating] = useState('1.0');
+  // const [review, setReview] = useState("");
+  const [newReviewObj, setNewReviewObj] = useState({rating: "", review: ""});
 
   const ratingsChangeHandler = (event) => {
     console.log("ratingsChangeHandler: " + event.target.value);
-    setRating(event.target.value);
+    // setRating(event.target.value);
+    setNewReviewObj({
+      ...newReviewObj,
+      rating: event.target.value
+    })
   }
 
   const reviewChangeHandler = (event) => {
     console.log("reviewChangeHandler: " + event.target.value);
-    setReview(event.target.value);
+    // setReview(event.target.value);
+    setNewReviewObj({
+      ...newReviewObj,
+      review: event.target.value
+    })
   }
 
   const submitHandler = (event) => {
     event.preventDefault();
     console.log("NewReview::Submit clicked");
-    console.log("Rating: " + rating);
-    console.log("Review: " + review);
+    console.log("Rating: " + newReviewObj.rating);
+    console.log("Review: " + newReviewObj.review);
   }
 
   return (

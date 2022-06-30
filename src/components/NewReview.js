@@ -8,18 +8,18 @@ export default function NewReview() {
   const ratingsChangeHandler = (event) => {
     console.log("ratingsChangeHandler: " + event.target.value);
     // setRating(event.target.value);
-    setNewReviewObj({
-      ...newReviewObj,
-      rating: event.target.value
+    setNewReviewObj((prevState) => {
+      return {...prevState, 
+              rating: event.target.value}
     })
   }
 
   const reviewChangeHandler = (event) => {
     console.log("reviewChangeHandler: " + event.target.value);
     // setReview(event.target.value);
-    setNewReviewObj({
-      ...newReviewObj,
-      review: event.target.value
+    setNewReviewObj((prevState) => {
+      return {...prevState, 
+              review: event.target.value}
     })
   }
 

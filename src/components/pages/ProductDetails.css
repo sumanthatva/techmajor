@@ -1,0 +1,11 @@
+.prod-details-img {
+  /* height: 300px;
+  width: 300px; */
+  /* max-width: 100% !important; */
+}
+.prod-details__left-col {
+  text-align: center !important;
+}
+.prod-details__add-cart-button {
+  width: 50%;
+}

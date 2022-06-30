@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import NewReview from '../NewReview';
 
 export default function ProductDetail() {
   const params = useParams();
@@ -39,7 +40,11 @@ export default function ProductDetail() {
             <h3 className='col-sm-9'>Reviews</h3>
             <button className='col-sm-3'>Add new review</button>
           </div>
-          
+          {isShowNewReview &&
+              <div className='row'>
+                <NewReview/>
+              </div> 
+          }
         </div>
       </div>
     </div>

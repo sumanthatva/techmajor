@@ -9,6 +9,9 @@ export default function ProductDetail() {
   // State to track new review form render
   const [isShowNewReview, setIsShowNewReview] = useState(false);
 
+  // state to track the reviews added.
+  const [reviews, setReviews] = useState([]);
+
   // function to toggle new review view
   const toggleNewReview = () => {
     setIsShowNewReview((prevState) => {
@@ -16,6 +19,13 @@ export default function ProductDetail() {
     })
   }
 
+  const addNewReview = (newReviewObj) => {
+    // Add new review to the array in the state
+    setReviews((prevState) => {
+      return [...prevState, newReviewObj];
+    });
+    console.log("add New review called");
+  }
 
   return (
     <div className='container'>
@@ -44,14 +54,38 @@ export default function ProductDetail() {
           </div>
           <hr/>
           <div className='row'>
-            <h3 className='col-sm-9'>Reviews</h3>
+            <h3 className='col-sm-9'>Reviews ({reviews.length}) </h3>
             <button className='col-sm-3' onClick={toggleNewReview}>Add new review</button>
           </div>
-          {isShowNewReview &&
-              <div className='row'>
-                <NewReview/>
-              </div> 
-          }
+          <div className='row'>
+            <div className='col-sm-12'>
+            {isShowNewReview &&
+                <div className='row'>
+                  <NewReview onAddReview={addNewReview}/>
+                </div> 
+            }
+            </div>
+            
+          </div>
+          
+          <div className='row'>
+            <div className='col-sm-12'>
+              {
+              reviews.length > 0 &&
+                <div className='reviews-div' id="review_div">
+                { reviews.map((review) => {
+                  return (
+                    <div>
+                      <div>{review.rating}</div>
+                      <div> {review.review}</div>
+                    </div>
+                  )
+                }) }
+                </div>
+              }
+            </div>
+          
+          </div>
         </div>
       </div>
     </div>

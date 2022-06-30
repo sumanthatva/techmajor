@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function NewReview() {
+export default function NewReview(props) {
   // const [rating, setRating] = useState('1.0');
   // const [review, setReview] = useState("");
   const [newReviewObj, setNewReviewObj] = useState({rating: "", review: ""});
@@ -30,6 +30,12 @@ export default function NewReview() {
     console.log("Review: " + newReviewObj.review);
 
     setNewReviewObj({rating: "", review: ""});
+    // Invoke NewReview added callback.
+    if(props.onAddReview) {
+      console.log("Calling props.onAddReview");
+      props.onAddReview(newReviewObj);
+    }
+    
   }
 
   return (

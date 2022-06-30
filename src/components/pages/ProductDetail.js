@@ -9,6 +9,13 @@ export default function ProductDetail() {
   // State to track new review form render
   const [isShowNewReview, setIsShowNewReview] = useState(false);
 
+  // function to toggle new review view
+  const toggleNewReview = () => {
+    setIsShowNewReview((prevState) => {
+      return !prevState;
+    })
+  }
+
 
   return (
     <div className='container'>
@@ -38,7 +45,7 @@ export default function ProductDetail() {
           <hr/>
           <div className='row'>
             <h3 className='col-sm-9'>Reviews</h3>
-            <button className='col-sm-3'>Add new review</button>
+            <button className='col-sm-3' onClick={toggleNewReview}>Add new review</button>
           </div>
           {isShowNewReview &&
               <div className='row'>

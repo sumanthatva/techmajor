@@ -13,7 +13,7 @@ function App() {
   const products = [{prodName: "Men's running shoes", prodPrice: "₹250", imagePath: "images/shoes1.jpeg", productId: "1"},
                     {prodName: "Men's trainers", prodPrice: "₹1250", imagePath: "images/shoes2.jpeg", productId: "2"},
                     {prodName: "Trendy shoes", prodPrice: "₹2250", imagePath: "images/shoes3.jpeg", productId: "3"}];
-  const [isUserLoggedIn] = useState(false);
+  const [isUserLoggedIn] = useState(true);
 
   return (
     <BrowserRouter>
@@ -46,7 +46,7 @@ function App() {
 
       {/* Conditional routing */}
       <Route 
-            path="/checkout" 
+            path="/checkout/*" 
             element={isUserLoggedIn? <Checkout/> : <Navigate to="/products/abcd" replace /> } />
     </Routes>
   </BrowserRouter>

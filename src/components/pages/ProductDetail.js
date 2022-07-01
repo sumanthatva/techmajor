@@ -29,7 +29,15 @@ export default function ProductDetail() {
     console.log("add New review called");
   }
 
+  /**
+   * <Summary/>
+   * routes-pass-data-in-navigate documentation
+   * Navigate to /checkout route.
+   * Pass the product id as state
+   */
   const onAddToCart = () => {
+    // {state:{}} -- this object will be passed to the target component.
+    // It should be accessed through the useLocation hook.
     navigate("/checkout", {state: {productId: params.productId}});
   }
 

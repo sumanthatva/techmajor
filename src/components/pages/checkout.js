@@ -5,6 +5,10 @@ export default function Checkout(props) {
   const location = useLocation();
 
   let productId = "";
+  // <Summary/>
+  // routes-pass-data-in-navigate documentation
+  // Location object will have the state passed by navigate.
+  // Fetch product Id from that state.
   if(location.state && location.state.productId) {
     productId = location.state.productId;
   }

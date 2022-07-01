@@ -1,12 +1,12 @@
-import { Outlet, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
+import Coupon from "../Coupon";
 
 export default function Checkout() {
   return (
-    <div>
+    <div className="container">
       <h3> Checkout </h3>
       <Routes>
-        <Route exact path="/20" element={<p> Coupon applied -- 20%! </p>} />
-        <Route exact path="/30" element={<p> Coupon applied -- 30%! </p>} />
+        <Route path="/:id" element={<Coupon/>} />
       </Routes>
     </div>
   )

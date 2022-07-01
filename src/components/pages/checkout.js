@@ -1,10 +1,23 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import Coupon from "../Coupon";
 
-export default function Checkout() {
+export default function Checkout(props) {
+  const location = useLocation();
+
+  let productId = "";
+  if(location.state && location.state.productId) {
+    productId = location.state.productId;
+  }
+  console.log(productId);
+
   return (
     <div className="container">
       <h3> Checkout </h3>
+      {productId !== "" &&
+        <div>
+          Checking out product with id: {productId}
+        </div>
+      }
       <Routes>
         <Route path="/:id" element={<Coupon/>} />
       </Routes>

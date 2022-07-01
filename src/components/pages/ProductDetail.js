@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import NewReview from '../NewReview';
 
 export default function ProductDetail() {
   const params = useParams();
   console.log(params.productId);
+
+  const navigate = useNavigate();
 
   // State to track new review form render
   const [isShowNewReview, setIsShowNewReview] = useState(false);
@@ -27,6 +29,10 @@ export default function ProductDetail() {
     console.log("add New review called");
   }
 
+  const onAddToCart = () => {
+    navigate("/checkout", {state: {productId: params.productId}});
+  }
+
   return (
     <div className='container'>
       {/* <h2>Product Detail Page</h2>
@@ -34,7 +40,7 @@ export default function ProductDetail() {
       <div className='row' id='product-details-container'>
         <div className='col-md-4 col-sm-12 prod-details__left-col' style={{"text-align": "center"}}>
           <img className='prod-details-img' src={"../images/shoes2.jpeg"} alt="alt" width={"90%"}/>
-          <button className='prod-details__add-cart-button'>Add to cart</button>
+          <button className='prod-details__add-cart-button' onClick={onAddToCart}>Add to cart</button>
         </div>
         <div className='col-md-8 col-sm-12'>
           <div className='row'>

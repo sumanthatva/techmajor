@@ -55,5 +55,13 @@ function App() {
    
   );
 }
+/**
+ * <Summary/>
+ * routes-conditional-rendering documentation
+ * 1. Routing moved to App.js from index.js
+ * 2. Conditional routing implement for "/checkout"
+ * 3. App.js renders only the nav bar and defines the routes.
+ * 4. Home component renders the products
+ */
 
 export default App;

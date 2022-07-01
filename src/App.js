@@ -38,7 +38,9 @@ function App() {
     <Routes>
       <Route path="/" element={<Home products={products}/>}/>
       <Route path="/products" element={<Home products={products}/>}/>
-      <Route path="/electronics" element={<Electronics/>}/>
+      <Route path="/electronics" element={<Electronics/>}>
+        <Route path=":id" element={<p> Some element </p>} />
+      </Route>
       <Route path="/books" element={<Books/>} />
       <Route path="/products/:productId" element={<ProductDetail/>}/>
       {/* Redirect */}

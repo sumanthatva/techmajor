@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import './Login.css';
 
+// <Summary/>
+// https://reactjs.org/docs/hooks-effect.html
+// useEffect hook - called after render is executed (after DOM updates).
+
 export default function Login() {
 
   /** 
@@ -16,13 +20,13 @@ export default function Login() {
   /**
    * function to check if the entered email is a valid email.
    * this function compares the email with a regex.
+   * returns true if the email is valid.
    */
   const isEmailValid = (email) => {
     const validEmailRegex = /^[a-zA-Z]+[\w\d]*([\.-]?[\w\d])*@[a-zA-Z]+[a-zA-Z0-9]*\.([a-zA-Z0-9]+\.)*[a-zA-Z]{2,5}$/;
     const isValid = validEmailRegex.test(email);
     console.log("isEmailValid::isValid: " + isValid);
-    // Enable/disable login button accordingly.
-    setIsEnableLogin(isValid);
+    return isValid;
   }
 
   /** 
@@ -37,7 +41,9 @@ export default function Login() {
     });
     // Check if email is valid.
     // Is this the right place to make this call?? IF so, what should be the param ?
-    isEmailValid(event.target.value);
+    const isValid = isEmailValid(event.target.value);
+    // Enable/disable login button accordingly.
+    setIsEnableLogin(isValid);
   }
 
   /**

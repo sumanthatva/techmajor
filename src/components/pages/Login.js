@@ -1,9 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './Login.css';
 
-// <Summary/>
-// https://reactjs.org/docs/hooks-effect.html
-// useEffect hook - called after render is executed (after DOM updates).
 
 export default function Login() {
 
@@ -17,6 +14,17 @@ export default function Login() {
    */
   const [isEnableLogin, setIsEnableLogin] = useState(false);
 
+  // <Summary/>
+  // https://reactjs.org/docs/hooks-effect.html
+  // useEffect hook - called after render is executed (after DOM updates).
+  // The latest state will be available to useEffect.
+  useEffect(() => {
+    const isValidEmail = isEmailValid(loginInfo.email);
+    const isValidPassword = isPasswordValid(loginInfo.password);
+    // Enable/disable login button accordingly.
+    setIsEnableLogin(isValidEmail & isValidPassword);
+  }, [loginInfo.email, loginInfo.password]);
+
   /**
    * function to check if the entered email is a valid email.
    * this function compares the email with a regex.
@@ -29,6 +37,14 @@ export default function Login() {
     return isValid;
   }
 
+  /**
+   * Function to check if the entered password is valid
+   * returns true if the password is valid.
+   */
+  const isPasswordValid = (password) => {
+    return (password == null || password.length < 8)? false: true;
+  }
+
   /** 
    * email change handler 
    * */
@@ -39,11 +55,6 @@ export default function Login() {
         email: event.target.value
       }
     });
-    // Check if email is valid.
-    // Is this the right place to make this call?? IF so, what should be the param ?
-    const isValid = isEmailValid(event.target.value);
-    // Enable/disable login button accordingly.
-    setIsEnableLogin(isValid);
   }
 
   /**

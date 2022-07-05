@@ -8,6 +8,7 @@ import ProductDetail from './components/pages/ProductDetail';
 import Home from './components/pages/Home';
 import { useState } from 'react';
 import Checkout from './components/pages/checkout';
+import Login from './components/pages/Login';
 
 function App() {
   const products = [{prodName: "Men's running shoes", prodPrice: "₹250", imagePath: "images/shoes1.jpeg", productId: "1"},
@@ -18,23 +19,24 @@ function App() {
   return (
     <BrowserRouter>
        <div className="App">
-      <h2> Let's start, Tech Major! </h2>
-      <nav
-        style={{
-          borderBottom: "solid 1px",
-          paddingBottom: "1rem",
-        }}
-      >
-        <Link to="/electronics">Electronics</Link> |{" "}
-        <Link to="/books">Books</Link> | {" "}
-        {/* Phones redirects to electronics */}
-        <Link to="/phones">Phones</Link> | {" "} 
-        <Link to="/products/1234">Product 1234</Link> | {" "}
-        <Link to="/checkout">Checkout</Link>
+      {/* <h2> Let's start, Tech Major! </h2> */}
+      <div className='container'>
+      {/* <nav className='navbar navbar-dark justify-content-center'> */}
+        <nav className='navbar navbar-expand-lg navbar-light' style={{"background-color": "#ffd733"}}>
+          <Link class="navbar-brand" to="/">TechMajor</Link>
+          <Link className='nav-link active' to="/electronics">Electronics</Link> 
+          <Link className='nav-link' to="/books">Books</Link>
+          {/* Phones redirects to electronics */}
+          <Link className='nav-link' to="/phones">Phones</Link> 
+          <Link className='nav-link' to="/products/1234">Product 1234</Link>
+          <Link className='nav-link' to="/checkout">Checkout</Link>
+          <Link className='nav-link ms-auto' to="/login">Login</Link>
 
-      </nav>
+        </nav>
+      </div>
       
     </div>
+    <div className='container'>
     <Routes>
       <Route path="/" element={<Home products={products}/>}/>
       <Route path="/products" element={<Home products={products}/>}/>
@@ -43,6 +45,8 @@ function App() {
       </Route>
       <Route path="/books" element={<Books/>} />
       <Route path="/products/:productId" element={<ProductDetail/>}/>
+      <Route path="/login" element={<Login/>}/>
+
       {/* Redirect */}
       <Route path="/phones" element={<Navigate to="/electronics"/>} />
 
@@ -51,6 +55,8 @@ function App() {
             path="/checkout/*" 
             element={isUserLoggedIn? <Checkout/> : <Navigate to="/products/abcd" replace /> } />
     </Routes>
+    </div>
+    
   </BrowserRouter>
 
    

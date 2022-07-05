@@ -1,0 +1,9 @@
+.login-container {
+  width: 640px;
+  margin: 0 auto;
+}
+.input-div {
+  width: 80%;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}

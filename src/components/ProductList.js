@@ -10,26 +10,26 @@ class ProductList extends React.Component {
   }
 
   /**
-   * Fetches data from a remote server and updates the state
+   * Fetches data from a remote server and updates the state.
    */
-  getProductList() {
+  async getProductList() {
     // <Summary/>
     // fetch is used to make http calls. By default the method is 'GET'
-    // Returns a promise which is 
-    fetch('http://localhost:3001/products')
-    .then(response => {
+    // Returns a promise which resolves to a response or an error.
+    try{
+      const response = await fetch('http://localhost:3001/products');
       if(response.ok) {
-        // parse json only if the response is ok.
-        return response.json();
+        // ok means the status is 2xx
+        const data = await response.json();
+        this.setState({plist: data});
+      } else {
+        // All 4xx and 5xx errors end up here.
+        // Handle it as an error to make it go to the catch block.
+        throw new Error("Server error");
       }
-      // All 4xx and 5xx errors end up here.
-      // Handle it as an error to make it go to the catch block.
-      throw new Error("Server error");
-    }).then(data => {
-      this.setState({plist: data});
-    }).catch(error => {
+    } catch(error) {
       console.log("Fetch error: " + error);
-    })
+    }
   }
 
   componentDidMount() {

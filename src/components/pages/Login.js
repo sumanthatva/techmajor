@@ -69,6 +69,28 @@ export default function Login() {
     })
   }
 
+  function loginHandler() {
+    fetch('http://localhost:3001/login', {
+      method: "POST",
+      body: JSON.stringify({"email": loginInfo.email, "password": loginInfo.password}),
+      headers: {"Content-type": "application/json"}
+    })
+    .then(response => {
+      if(response.ok) {
+        return response.json();
+      }
+      throw new Error("Wrong username or password");
+    }).then(data => {
+      console.log("Successful login");
+      console.log("email: " + data.email);
+      console.log("name: " + data.name);
+      console.log("token: " + data.token);
+      return;
+    }).catch(error => {
+      console.log("Login failure: " + error);
+    })
+  }
+
   return(
     <div className="container">
       <div className="login-container">
@@ -92,7 +114,11 @@ export default function Login() {
                     onChange={passwordChangeHandler}></input>
           </div>
           <div className='input-div text-center'>
-          <button type="button" class="btn btn-dark" disabled={!isEnableLogin}>Login</button>
+          <button type="button" class="btn btn-dark" 
+                  disabled={!isEnableLogin}
+                  onClick={loginHandler}>
+            Login
+          </button>
           </div>
         </div>
       </div>

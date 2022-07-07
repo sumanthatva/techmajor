@@ -1,4 +1,4 @@
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Link, Route, Routes, useLocation } from "react-router-dom";
 import Coupon from "../Coupon";
 
 export default function Checkout(props) {
@@ -18,9 +18,18 @@ export default function Checkout(props) {
           Checking out product with id: {productId}
         </div>
       }
-      <Routes>
-        <Route path="/:id" element={<Coupon/>} />
-      </Routes>
+      <Link to="/checkout/get20">Get 20% off!! </Link>
+      <div className="row">
+        <div className="col-sm-8">
+
+        </div>
+        <div className="col-sm-4">
+          <Routes>
+            <Route path="/:id" element={<Coupon/>} />
+          </Routes>
+        </div>
+
+      </div>
     </div>
   )
 }

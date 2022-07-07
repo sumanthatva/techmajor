@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
+import AuthContext from '../../context/auth-context';
 import './Login.css';
 
 
@@ -75,6 +76,15 @@ export default function Login() {
     })
   }
 
+  /** useContext to get access to AuthContext */
+  /** <Summary/>
+   * Context API and useContext
+   * authContext reads values from the AuthContext.Provider and makes it available to this component.
+   * This component uses the onLogin function in the context to set the user info (authInfo)
+   */
+   const authContext = useContext(AuthContext);
+   
+
   /**
    * Function to handle login request.
    * 1. fetch with method set to POST
@@ -102,9 +112,15 @@ export default function Login() {
       console.log("name: " + data.name);
       console.log("token: " + data.token);
       setIsLoginSuccess(true);
+      /**
+       * On successful login, set the email, name and token in AuthContext.
+       * These values can be consumed by other components of the app using the AuthContext.Provider
+       */
+      authContext.onLogin(data.email, data.name, data.token);
       return;
     }).catch(error => {
       setIsShowErrorMsg(true);
+      authContext.onLogout();
       console.log("Login failure: " + error);
     })
   }

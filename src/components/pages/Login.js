@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Navigate } from 'react-router-dom';
 import './Login.css';
 
 
@@ -13,6 +14,11 @@ export default function Login() {
    * State to enable login button
    */
   const [isEnableLogin, setIsEnableLogin] = useState(false);
+
+  /** State to keep track of login success status */
+  const [isLoginSuccess, setIsLoginSuccess] = useState(false);
+
+  const [isShowErrorMsg, setIsShowErrorMsg] = useState(false);
 
   // <Summary/>
   // https://reactjs.org/docs/hooks-effect.html
@@ -69,7 +75,17 @@ export default function Login() {
     })
   }
 
+  /**
+   * Function to handle login request.
+   * 1. fetch with method set to POST
+   * 2. body contains email and password (in json string format)
+   * 3. set content-type to 'application/json'
+   * 4. if response is ok, email, name and token is read from the response json.
+   */
   function loginHandler() {
+    if(isShowErrorMsg) {
+      setIsShowErrorMsg(false);
+    }
     fetch('http://localhost:3001/login', {
       method: "POST",
       body: JSON.stringify({"email": loginInfo.email, "password": loginInfo.password}),
@@ -85,13 +101,16 @@ export default function Login() {
       console.log("email: " + data.email);
       console.log("name: " + data.name);
       console.log("token: " + data.token);
+      setIsLoginSuccess(true);
       return;
     }).catch(error => {
+      setIsShowErrorMsg(true);
       console.log("Login failure: " + error);
     })
   }
 
   return(
+    (isLoginSuccess)? <Navigate to="/" /> :
     <div className="container">
       <div className="login-container">
         <div className="card">
@@ -121,6 +140,13 @@ export default function Login() {
           </button>
           </div>
         </div>
+        {isShowErrorMsg?
+        (
+        <div className='container'>
+          <p> Wrong username or password </p>
+        </div>
+        ): null
+        }
       </div>
     </div>
   )

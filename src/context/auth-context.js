@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 const AuthContext = React.createContext({
   isLoggedIn: false,
@@ -10,6 +10,56 @@ const AuthContext = React.createContext({
 });
 
 export default AuthContext;
+
+export const AuthContextProvider = (props) => {
+
+  /** 
+   * This function sets the authInfo values (AuthContext) 
+   * It also sets the isLoggedIn prop to true
+  */
+   const loginHandler = (email, name, token) => {
+    console.log("APP::loginHandler called");
+    setAuthInfo((prevState) => {
+      return {
+        ...prevState,
+        isLoggedIn: true,
+        email: email,
+        name: name,
+        token: token,
+      }
+    })
+  }
+
+  /**
+   * This function resets all values of authInfo
+   * It also sets the isLoggedIn prop to false
+   */
+  const logoutHandler = () => {
+    console.log("APP::logoutHandler called");
+    setAuthInfo((prevState) => {
+      return {
+        ...prevState,
+        email: '',
+        name: '',
+        token: '',
+        isLoggedIn: false
+      }
+    })
+  }
+  /**
+   * The authInfo state is used to store the AuthContext values.
+   * The onLogin and onLogout function refs are bound to functions in this component that manipulate the authInfo values.
+   */
+  const [authInfo, setAuthInfo] = useState({
+    isLoggedIn: false,
+    email: '',
+    name: '',
+    token: '',
+    onLogin: loginHandler,
+    onLogout: logoutHandler
+  })
+  return <AuthContext.Provider value={authInfo}>{props.children}</AuthContext.Provider>;
+}
 
 /**
  * <Summary/>

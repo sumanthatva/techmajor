@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+import { AuthContextProvider } from './context/auth-context';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -9,7 +10,10 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 // https://stackoverflow.com/questions/49206509/child-component-constructor-called-multiple-times/61443443#61443443
 // Its NOT a bug. Having strict mode helps.
 root.render(
-  <App/>  
+  <AuthContextProvider>
+    <App/>  
+  </AuthContextProvider>
+  
 );
 
 /** Routing basics 

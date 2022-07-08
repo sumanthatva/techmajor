@@ -28,6 +28,10 @@ export const AuthContextProvider = (props) => {
         token: token,
       }
     })
+    localStorage.setItem("isLoggedIn", "TRUE");
+    localStorage.setItem("email", email);
+    localStorage.setItem("name", name);
+    localStorage.setItem("token", token);
   }
 
   /**
@@ -45,6 +49,10 @@ export const AuthContextProvider = (props) => {
         isLoggedIn: false
       }
     })
+    localStorage.setItem("isLoggedIn", "FALSE");
+    localStorage.removeItem("email")
+    localStorage.removeItem("name");
+    localStorage.removeItem("token");
   }
   /**
    * The authInfo state is used to store the AuthContext values.

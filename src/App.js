@@ -6,7 +6,7 @@ import Electronics from './components/pages/Electronics';
 import Books from './components/pages/Books';
 import ProductDetail from './components/pages/ProductDetail';
 import Home from './components/pages/Home';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import Checkout from './components/pages/checkout';
 import Login from './components/pages/Login';
 import AuthContext from './context/auth-context';
@@ -18,6 +18,17 @@ function App() {
 
   const authCtx = useContext(AuthContext);
   console.log("APP::islogged in: " + authCtx.isLoggedIn);
+
+  useEffect(() => {
+    console.log("APP::Useeffect to read from localstorage");
+    const isLoggedIn = localStorage.getItem("isLoggedIn");
+    if(isLoggedIn === "TRUE") {
+      const email = localStorage.getItem("email");
+      const name = localStorage.getItem("name");
+      const token = localStorage.getItem("token");
+      authCtx.onLogin(email, name, token);
+    }
+  }, []);
 
   return (
     <BrowserRouter>

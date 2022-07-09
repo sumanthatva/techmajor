@@ -16,7 +16,7 @@ class ProductList extends React.Component {
     // fetch is used to make http calls. By default the method is 'GET'
     // Returns a promise which is 
     try {
-      const response = await fetch('http://localhost:300/products');
+      const response = await fetch('http://localhost:3001/products');
       if(response.ok) {
         const data = await response.json();
         this.setState({plist: data});

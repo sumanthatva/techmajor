@@ -1,5 +1,8 @@
 {
   "projects": {
+    "prod": "tech-major-react-server",
     "default": "tech-major-react-server"
-  }
+  },
+  "targets": {},
+  "etags": {}
 }

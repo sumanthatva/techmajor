@@ -33,7 +33,9 @@ class ProductList extends React.Component {
   }
 
   componentDidMount() {
-    this.getProductList();
+    // <Summary/>
+    // No server deployed to serve products. Hence use products from the props.
+    // this.getProductList();
   }
 
   render() {
@@ -41,7 +43,8 @@ class ProductList extends React.Component {
     return(
       <div className='container'>
         <div className='row'>
-        { this.state.plist.map(prod => (
+        {/* Reading products from props, instead of the state */}
+        { this.props.products.map(prod => (
           <ProductItem prodName={prod.prodName} prodPrice={prod.prodPrice} imagePath={prod.imagePath} productId={prod.productId}/>
         ))}
         </div>

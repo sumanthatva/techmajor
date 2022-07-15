@@ -125,6 +125,33 @@ export default function Login() {
     })
   }
 
+  function dummyLogin() {
+    if(isShowErrorMsg) {
+      setIsShowErrorMsg(false);
+    }
+    if(isEmailValid(loginInfo.email) && isPasswordValid(loginInfo.password) 
+        && loginInfo.password.indexOf("pass") !== -1 ) {
+      const name = loginInfo.email.substring(0, loginInfo.email.indexOf('@'));
+      const token = Math.random().toString(36).substring(2);
+      console.log("Successful login");
+      console.log("email: " + loginInfo.email);
+      console.log("name: " + name);
+      console.log("token: " + token);
+
+      /**
+       * On successful login, set the email, name and token in AuthContext.
+       * These values can be consumed by other components of the app using the AuthContext.Provider
+       */
+       authContext.onLogin(loginInfo.email, name, token);
+
+      setIsLoginSuccess(true);
+    } else {
+      setIsShowErrorMsg(true);
+      authContext.onLogout();
+      console.log("Login failure");
+    }
+  }
+
   return(
     (isLoginSuccess)? <Navigate to="/" /> :
     <div className="container">
@@ -151,7 +178,8 @@ export default function Login() {
           <div className='input-div text-center'>
           <button type="button" class="btn btn-dark" 
                   disabled={!isEnableLogin}
-                  onClick={loginHandler}>
+                  // onClick={loginHandler}>
+                  onClick={dummyLogin}>
             Login
           </button>
           </div>
